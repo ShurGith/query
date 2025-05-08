@@ -2,12 +2,18 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
 import { ProductContextProvider } from './context/ProductProvider.jsx'
-import './index.css'
 
-createRoot(document.getElementById('root')).render(
+import { BrowserRouter } from 'react-router-dom'
+import './index.css'
+import Navbar from './components/Navbar.jsx'
+
+
+createRoot(document.querySelector('#root')).render(
   <StrictMode>
-    <ProductContextProvider>
-      <App />
-    </ProductContextProvider>
+    <BrowserRouter>
+      <ProductContextProvider>
+        <App />
+      </ProductContextProvider>
+    </BrowserRouter>
   </StrictMode>,
 )
