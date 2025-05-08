@@ -1,7 +1,8 @@
 import axios from "axios";
-import { DB_PORT} from "./configConect.js";
 
-const API = `http://localhost:${DB_PORT}/products`;
+const SERVER_PORT = 3000
+
+const API = `http://localhost:${SERVER_PORT}/products`;
 
 export const getProductsRequest = async () => {
     //  await axios.get(`'${API}/tasks`);
