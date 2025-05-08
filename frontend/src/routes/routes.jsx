@@ -1,0 +1,22 @@
+import axios from "axios";
+import { DB_PORT} from "./configConect.js";
+
+const API = `http://localhost:${DB_PORT}/products`;
+
+export const getProductsRequest = async () => {
+    //  await axios.get(`'${API}/tasks`);
+    return await axios.get(`${API}`);
+}
+
+export const createProductRequest = async (task) =>
+    await axios.post(`${API}`, task);
+
+export const deleteProductRequest = async (id) =>
+    await axios.delete(`${API}/${id}`);
+
+export const getProductRequest = async (id) =>
+    await axios.get(`${API}/${id}`);
+
+export const updateProductRequest = async (id, newFields) =>
+    await axios.put(`${ API }/${id}`, newFields);
+
