@@ -1,5 +1,6 @@
 import { createContext, useContext, useState } from 'react';
 import {
+    consultaDeProducto,
     getProductRequest, //Uno solo
     getProductsRequest, // Productos Todos
     createProductRequest,
@@ -9,6 +10,7 @@ import {
     from '../routes/routes';
 
 const ProductContext = createContext();
+
 
 export const useProducts = () => {
     const context = useContext(ProductContext);
@@ -21,10 +23,21 @@ export const useProducts = () => {
 
 export const ProductContextProvider = ({ children }) => {
     const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     async function loadProducts() {
-        const response = await getProductsRequest();
-        setProducts(response.data);
+        setLoading(true);
+        try {
+            const response = await getProductsRequest();
+            if(consultaDeProducto.includes('dummyjson.com'))
+                setProducts(response.data.products);
+            else
+                setProducts(response.data);
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setLoading(false);
+        }        
     }
 
     const getProduct = async (id) => {
@@ -37,12 +50,12 @@ export const ProductContextProvider = ({ children }) => {
     };
 
 
-
     return (
         <ProductContext.Provider value={{
             getProduct,
             setProducts,
             loadProducts,
+            loading,
             products,
         }}>
             {children}
