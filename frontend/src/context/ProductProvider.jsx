@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from 'react';
 import {
-    consultaDeProducto,
+    //consultaDeProducto,
     getProductRequest, //Uno solo
     getProductsRequest, // Productos Todos
     createProductRequest,
@@ -20,18 +20,18 @@ export const useProducts = () => {
     return context;
 };
 
-
 export const ProductContextProvider = ({ children }) => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false);
 
-    async function loadProducts() {
+    async function loadProducts(limit=10, skip=0) {
         setLoading(true);
         try {
-            const response = await getProductsRequest();
-            if(consultaDeProducto.includes('dummyjson.com'))
+            const response = await getProductsRequest(limit, skip);
+          //  console.log(response.data, response.statusText, response.headers);
+         /*   if(consultaDeProducto.includes('dummyjson.com'))
                 setProducts(response.data.products);
-            else
+            else*/
                 setProducts(response.data);
         } catch (error) {
             console.error(error);

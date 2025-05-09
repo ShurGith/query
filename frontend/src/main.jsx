@@ -9,11 +9,9 @@ import Navbar from './components/Navbar.jsx'
 
 
 createRoot(document.querySelector('#root')).render(
-  <StrictMode>
     <BrowserRouter>
       <ProductContextProvider>
         <App />
       </ProductContextProvider>
     </BrowserRouter>
-  </StrictMode>,
 )
