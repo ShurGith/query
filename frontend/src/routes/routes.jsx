@@ -6,9 +6,14 @@ const SERVER_PORT = 3000
 const API = 'https://dummyjson.com/products'
 export const consultaDeProducto = API
 
-export const getProductsRequest = async (limit, skip) => {
-    return await axios.get(`${API}?limit=${limit}&skip=${skip}`);
+export const getProductsRequest = async (limit, skip,delay) => {
+    //return await axios.get(`${API}?limit=${limit}&skip=${skip}`);
   //  return await axios.get(`http://localhost:3000/products`);
+/*    fetch(`${API}?limit=${limit}&skip=${skip}`)
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error(error)); */
+    return await axios.get(`${API}?limit=${limit}&skip=${skip}&delay=${delay}`);
 }
 
 export const createProductRequest = async (prod) =>

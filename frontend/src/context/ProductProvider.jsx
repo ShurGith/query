@@ -10,8 +10,6 @@ import {
     from '../routes/routes';
 
 const ProductContext = createContext();
-
-
 export const useProducts = () => {
     const context = useContext(ProductContext);
     if (!context) {
@@ -24,20 +22,17 @@ export const ProductContextProvider = ({ children }) => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false);
 
-    async function loadProducts(limit=10, skip=0) {
+    async function loadProducts(limit = 10, skip = 0, delay = 0) {
         setLoading(true);
         try {
-            const response = await getProductsRequest(limit, skip);
-          //  console.log(response.data, response.statusText, response.headers);
-         /*   if(consultaDeProducto.includes('dummyjson.com'))
-                setProducts(response.data.products);
-            else*/
-                setProducts(response.data);
+            const response = await getProductsRequest(limit, skip, delay);
+            //  console.log(response.data, response.statusText, response.headers);
+            setProducts(response.data)
         } catch (error) {
             console.error(error);
         } finally {
             setLoading(false);
-        }        
+        }
     }
 
     const getProduct = async (id) => {
@@ -48,7 +43,6 @@ export const ProductContextProvider = ({ children }) => {
             console.error(error);
         }
     };
-
 
     return (
         <ProductContext.Provider value={{
