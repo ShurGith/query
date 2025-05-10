@@ -5,7 +5,6 @@ import { ProductContextProvider } from './context/ProductProvider.jsx'
 
 import { BrowserRouter } from 'react-router-dom'
 import './index.css'
-import Navbar from './components/Navbar.jsx'
 
 
 createRoot(document.querySelector('#root')).render(
